@@ -1,174 +1,177 @@
 <html>
 
-<head>
-<!-- load the d3.js library -->    
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="https://d3js.org/d3-scale.v3.min.js"></script>
-<script>
-// set the dimensions and margins of the graph
-var margin = {top: 0, right: 0, bottom: 0, left: 0},
-    width = 500 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    <head>
+	<!-- load the d3.js library -->    
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="https://d3js.org/d3-scale.v3.min.js"></script>
+	<script>
+	 // set the dimensions and margins of the graph
+	 var margin = {top: 0, right: 0, bottom: 0, left: 0},
+	     width = 500 - margin.left - margin.right,
+	     height = 500 - margin.top - margin.bottom;
 
-// Add X axis
-var x = d3.scaleLinear()
-    .domain([0, 100])
-    .range([ 0, width ]);
+	 // Add X axis
+	 var x = d3.scaleLinear()
+		   .domain([0, 100])
+		   .range([ 0, width ]);
 
-// Add Y axis
-var y = d3.scaleLinear()
-    .domain([0, 100])
-    .range([ height, 0]);
+	 // Add Y axis
+	 var y = d3.scaleLinear()
+		   .domain([0, 100])
+		   .range([ height, 0]);
 
-// Add a scale for bubble size
-var z = d3.scaleLinear()
-    .domain([1, 100])
-    .range([5, 25]);
+	 // Add a scale for bubble size
+	 var z = d3.scaleLinear()
+		   .domain([1, 100])
+		   .range([5, 25]);
 
-function draw(id, data) {
-	// append the svg object to the body of the page
-	var svg = d3.select(id);
-	svg.selectAll("*").remove();
-	svg.append("svg")
-	    .attr("width", width + margin.left + margin.right)
-	    .attr("height", height + margin.top + margin.bottom)
-	  .append("g")
-	    .attr("transform",
-	          "translate(" + margin.left + "," + margin.top + ")")
-	  .append('g')
-	    .selectAll("dot")
-	    .data(data)
-	    .enter()
-	    .append("circle")
-	      .attr("class", function(d) { return "bubbles" })
-	      .attr("cx", function (d) { return x(d.x); } )
-	      .attr("cy", function (d) { return y(d.y); } )
-	      .attr("r", function (d) { return z(d.r); } )
-	      .style("fill", function (d) { return "rgb("+d.col+","+d.col+","+d.col+")"; } )
-}
-</script> 
+	 function draw(id, data) {
+	     // append the svg object to the body of the page
+	     var svg = d3.select(id);
+	     svg.selectAll("*").remove();
+	     svg.append("svg")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+		.append("g")
+		.attr("transform",
+	              "translate(" + margin.left + "," + margin.top + ")")
+		.append('g')
+		.selectAll("dot")
+		.data(data)
+		.enter()
+		.append("circle")
+		.attr("class", function(d) { return "bubbles" })
+		.attr("cx", function (d) { return x(d.x); } )
+		.attr("cy", function (d) { return y(d.y); } )
+		.attr("r", function (d) { return z(d.r); } )
+		.style("fill", function (d) { return "rgb("+d.col+","+d.col+","+d.col+")"; } )
+	 }
+	</script> 
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<style>
-.bubbles {
-  stroke-width: 1px;
-  stroke: black;
-  opacity: 0.8
-}
-</style>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style>
+	 .bubbles {
+	     stroke-width: 1px;
+	     stroke: black;
+	     opacity: 0.8
+	 }
+	</style>
 
-</head>
+    </head>
 
-<body>
+    <body onload="drawRandom()">
 	<div class="jumbotron">
-	  <h1 class="display-4">iArchiveOfMind</h1>
-	  <p>Inspired by Kimsooja’s work <a href="https://www.pem.org/exhibitions/kimsooja-archive-of-mind"><i>Archive of Mind</i></a>, the <i>iArchiveOfMind</i> is a participatory web-based art installation that explores the interplay of our individuality and unity, of our tendencies towards harmony and chaos, and of our capacities for randomness and order. Visitors are encouraged to contribute a small greyscaled circle of varying size to a common canvas. Through the accumulation of these small, individual gestures, a complex array of tones and scales will emerge. A computationally randomly generated analogue serves as a comparison. </p>
-	  <a class="btn btn-primary btn-lg" href="about.html" role="button">Learn more</a>
+	    <h1 class="display-4">iArchiveOfMind</h1>
+	    <p>Inspired by Kimsooja’s work <a href="https://www.pem.org/exhibitions/kimsooja-archive-of-mind"><i>Archive of Mind</i></a>, the <i>iArchiveOfMind</i> is a participatory web-based art installation that explores the interplay of our individuality and unity, of our tendencies towards harmony and chaos, and of our capacities for randomness and order. Visitors are encouraged to contribute a small greyscaled circle of varying size to a common canvas. Through the accumulation of these small, individual gestures, a complex array of tones and scales will emerge. A computationally randomly generated analogue serves as a comparison. </p>
+	    <a class="btn btn-primary btn-lg" href="about.html" role="button">Learn more</a>
 	</div>
 
 	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-			<h2>Contribute a circle:</h2>
-				<form onsubmit="writeUserData(
+	    <div class="row">
+		<div class="col-md-12">
+		    <h2>Contribute a circle:</h2>
+		    <form onsubmit="writeUserData(
 				parseInt(document.getElementById('x').value),
 				parseInt(document.getElementById('y').value),
 				parseInt(document.getElementById('r').value),
 				parseInt(document.getElementById('col').value)
 				);">
-				X: <input id="x" type="number" min="1" max="100" step="1"></input>
-				Y: <input id="y" type="number" min="1" max="100" step="1"></input>
-				Radius: <input id="r" type="number" min="1" max="100" step="1"></input>
-				Color: <input id="col" type="number" min="1" max="255" step="1"></input>
-				<input type="submit" value="Submit">
-				</form>
-			</div>
+			X (1-100): <input id="x" type="number" min="1" max="100" step="1"></input>			
+			Y (1-100): <input id="y" type="number" min="1" max="100" step="1"></input>
+			Radius (1-100): <input id="r" type="number" min="1" max="100" step="1"></input>
+			Color (1-255): <input id="col" type="number" min="1" max="255" step="1"></input>
+			<input type="submit" value="Submit">
+		    </form>
 		</div>
-		<hr>
-		<div class="row">
-			<div class="col-md-6" style="min-width: 500px">
-				<div align="center">
-					<h2>Randomly Generated</h2>
-					<div id="randomArt" style="border:1px solid black; width: 500px; height: 500px;"></div>
-				</div>
-			</div>
-			<div class="col-md-6" style="min-width: 500px">
-				<div align="center">
-					<h2>Human Made</h2>
-					<div id="humanArt" style="border:1px solid black; width: 500px; height: 500px;"></div>
-				</div>
-			</div>
+	    </div>
+	    <hr>
+	    <div class="row">
+		<div class="col-md-6" style="min-width: 500px">
+		    <div align="center">
+			<br>
+			<h2>Randomly Generated</h2>
+			<div id="randomArt" style="border:1px solid black; width: 500px; height: 500px;"></div>
+		    </div>
 		</div>
+		<div class="col-md-6" style="min-width: 500px">
+		    <div align="center">
+			<br>
+			<h2>Human Made</h2>
+			<div id="humanArt" style="border:1px solid black; width: 500px; height: 500px;"></div>
+		    </div>
+		</div>
+	    </div>
 	</div>
 
-<script>
-	// Generate random data
-	var i;
-	var randomData = [];
-	for (i = 0; i < 100; i++) {	
-	    var dataPoint = {
-	        x: Math.round(Math.random()*99)+1,
-	        y: Math.round(Math.random()*99)+1,
- 	        r: Math.round(Math.random()*99)+1,
-	        col: Math.round(Math.random()*254)+1
-	    }
-		randomData.push(dataPoint);
-	}
-	draw('#randomArt', randomData);
-</script>
+	<script>
+	 var randomData = [];
+	 function drawRandom() {
+	     // Generate random data
+	     var i;
+	     for (i = 0; i < 100; i++) {	
+		 var dataPoint = {
+	             x: Math.round(Math.random()*99)+1,
+	             y: Math.round(Math.random()*99)+1,
+ 	             r: Math.round(Math.random()*99)+1,
+	             col: Math.round(Math.random()*254)+1
+		 }
+		 randomData.push(dataPoint);
+	     }
+	     draw('#randomArt', randomData);
+	 }
+	</script>
 
-<script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
-<script>
-	// Initialize Firebase
-	var config = {
-	    apiKey: "AIzaSyBAaPQzazAwF0VTbQH3_X1GZfXF2_jnr8g",
-	    authDomain: "iarchiveofmind.firebaseapp.com",
-	    databaseURL: "https://iarchiveofmind.firebaseio.com/",
-	    storageBucket: "",
-	    messagingSenderId: "517826150191"
-	}
-	var app = firebase.initializeApp(config)
-	var database = app.database()
+	<script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+	<script>
+	 // Initialize Firebase
+	 var config = {
+	     apiKey: "AIzaSyBAaPQzazAwF0VTbQH3_X1GZfXF2_jnr8g",
+	     authDomain: "iarchiveofmind.firebaseapp.com",
+	     databaseURL: "https://iarchiveofmind.firebaseio.com/",
+	     storageBucket: "",
+	     messagingSenderId: "517826150191"
+	 }
+	 var app = firebase.initializeApp(config)
+	 var database = app.database()
+	 var ref = firebase.database().ref();
 
-	var ref = firebase.database().ref();
+	 var humanData = [];
+	 function snapshotToArray(snapshot) {
+	     var returnArr = [];
+	     snapshot.forEach(function(childSnapshot) {
+	         var item = childSnapshot.val();
+	         item.key = childSnapshot.key;
 
-	var humanData = [];
-	function snapshotToArray(snapshot) {
-	    var returnArr = [];
-	    snapshot.forEach(function(childSnapshot) {
-	        var item = childSnapshot.val();
-	        item.key = childSnapshot.key;
+	         returnArr.push(item);
+	     });
+	     return returnArr;
+	 };
+	 ref.on("value", function(snapshot) {
+	     humanData = snapshotToArray(snapshot);
+	     draw('#humanArt', humanData);
+	 }, function (error) {
+	     console.log("Error: " + error.code);
+	 });
 
-	        returnArr.push(item);
-	    });
-	    return returnArr;
-	};
-	ref.on("value", function(snapshot) {
-	   humanData = snapshotToArray(snapshot);
-	   draw('#humanArt', humanData);
-	}, function (error) {
-	   console.log("Error: " + error.code);
-	});
+	 // Write to database
+	 function writeUserData(x, y, radius, color) {
+	     var dataPoint = {
+	         x: x,
+		 y: y,
+		 r: radius,
+		 col: color
+	     };
+	     ref.push(dataPoint);
+	 }
 
-	// Write to database
-	function writeUserData(x, y, radius, color) {
-		var dataPoint = {
-	        x: x,
-		    y: y,
-		    r: radius,
-		    col: color
-	    };
-		ref.push(dataPoint);
-	}
+	</script>
 
-</script>
+	<br><br>
+	<footer class="footer mt-auto py-3" style="background-color: #f5f5f5;">
+	    <div class="container" align="center">
+		<span class="text-muted">© <a href="https://jef.works/">JEFworks</a></span>
+	    </div>
+	</footer>
 
-<br><br>
-<footer class="footer mt-auto py-3" style="background-color: #f5f5f5;">
-  <div class="container" align="center">
-    <span class="text-muted">© <a href="https://jef.works/">JEFworks</a></span>
-  </div>
-</footer>
-
-</body>
+    </body>
 </html>
